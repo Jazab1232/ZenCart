@@ -1,0 +1,35 @@
+.categoryPage{
+    padding: 20px 10%;
+}
+.categoryCardList{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+}
+.categoryPageBar {
+    width: 940px;
+    background-color: #fff;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.056);
+    /* border-radius: 5px; */
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.categoryPageBar span {
+    background-color: #E8542B;
+    width: 5px;
+    height: 100%;
+    display: inline-block;
+}
+
+.categoryPageBar p {
+    color: rgba(0, 0, 0, 0.402);
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 30px;
+}

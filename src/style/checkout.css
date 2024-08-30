@@ -1,0 +1,43 @@
+.checkout {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.BankingInfo {
+    width: 50%;
+    background-color: #fff;
+    height: fit-content;
+    padding: 0 20px;
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.BankingInfo h3 {
+    text-align: center;
+}
+
+.BankingInfo p {
+    font-size: 12px;
+    margin: 0;
+    font-weight: 500;
+    align-items: flex-start;
+}
+
+.BankingInfo input {
+    width: 80%;
+    height: 30px;
+}
+.orderBtn{
+    text-decoration: none;
+    background-color: #E8542B;
+    color: white;
+    border: 1px solid #E8542B;
+    padding: 10px 30px;
+    margin-top: 15px;
+    cursor: pointer;
+    width: fit-content;
+}

@@ -1,0 +1,100 @@
+.card {
+    width: 180px;
+    height: 300px;
+    max-width: 200px;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.card:hover {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.303);
+    cursor: pointer;
+}
+
+.cardImg {
+    width: 100%;
+    min-height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardImg img {
+    height: 100%;
+}
+
+.card .cardContent {
+    /* padding: 0 0 0px 10px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 5%;
+}
+
+.brand {
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding: 5px 0;
+    font-weight: 500;
+}
+
+.brand span {
+    font-size: 12px;
+    opacity: .7;
+    font-weight: 400;
+}
+
+.cardTitle {
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    padding: 5px 0px;
+    font-weight: 500;
+}
+
+.price {
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.oldPrice span{
+    font-size: 11px;
+    text-decoration: line-through;
+    opacity: .7;
+}
+
+.discount {
+    font-size: 10px;
+    color: #E8542B;
+}
+
+.cardTag {
+    display: inline-block;
+    position: absolute;
+    background-color: #E8542B;
+    width: 100px;
+    height: 20px;
+    top: 15px;
+    left: -22px;
+    font-size: 14px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(-45deg);
+    text-transform: capitalize;
+
+}

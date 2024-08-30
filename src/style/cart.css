@@ -1,0 +1,127 @@
+.cart {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardHead {
+    width: 80%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+    margin: 30px 0;
+}
+
+.cardHead p {
+    font-size: 12px;
+    font-weight: 500;
+    width: 13%;
+    text-align: center;
+}
+
+.cardHead .cartProductTitle {
+    width: 40%;
+
+    text-align: left;
+}
+
+.cartList {
+    width: 80%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    /* padding: 0 20px; */
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.053);
+}
+
+.cartList p {
+    font-size: 12px;
+    width: 13%;
+    text-align: center;
+}
+
+.cartList .cartSerial {
+    width: 8%;
+}
+
+.cartList .cartProduct {
+    width: 40%;
+    font-size: 12px;
+    text-align: left;
+}
+
+.cartProduct {
+    display: flex;
+    gap: 10px;
+}
+
+.cartProduct p {
+    width: fit-content;
+}
+
+.cartProduct img {
+    width: 40px;
+    height: 40px;
+}
+
+.cardHead .cartSerial {
+    width: 8%;
+}
+
+.Cartquantity {
+    display: flex;
+    justify-content: center;
+}
+
+.Cartquantity span {
+    border: 1px solid rgba(0, 0, 0, 0.556);
+    padding: 0 10px;
+}
+
+.totalPrice {
+    color: #E8542B;
+    font-weight: 600;
+}
+
+.totalCartPrice {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 80%;
+    height: fit-content;
+    padding: 20px ;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+
+.clearBtn button {
+    color: #E8542B;
+    border: 1px solid #E8542B;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.checkOutbtn {
+    text-decoration: none;
+    background-color: #E8542B;
+    color: white;
+    border: 1px solid #E8542B;
+    padding: 10px 30px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+.priceAndCheckOut{
+    display: flex;
+    flex-direction: column;
+}
+.priceAndCheckOut p{
+    margin: 0;
+    font-size: 14px;
+}
+.priceAndCheckOut p span{
+font-size: 18px;
+color: #E8542B;
+font-weight: 600;
+}

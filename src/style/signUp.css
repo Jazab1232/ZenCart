@@ -1,0 +1,103 @@
+.signUp {
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    box-sizing: border-box;
+
+}
+
+.signUpBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 350px;
+    margin-top: 30px;
+    height: fit-content;
+}
+
+.signUpEmail {
+    width: 90%;
+}
+
+.signUpEmail p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.signUpEmail input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    height: 40px;
+    width: 100%;
+    margin-top: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.signUpPassword {
+    width: 90%;
+    margin-top: 20px;
+}
+
+.signUpPassword p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.signUpPassword input {
+    outline: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    height: 40px;
+    width: 100%;
+    margin-top: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.signUpButton {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: #D06122;
+    color: white;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.googleButton {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+    border: 3px solid #D06122;
+    color: #D06122;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.googleButton i{
+    font-size: 18px;
+    cursor: pointer;
+}
+.signUpLink{
+    font-size: 16px;
+    font-weight: 600;
+    color: blue;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
