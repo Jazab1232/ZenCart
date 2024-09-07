@@ -12,6 +12,7 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    margin-top: 10px;
 }
 
 .card:hover {
@@ -26,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .cardImg img {
@@ -70,7 +72,7 @@
     margin-bottom: 10px;
 }
 
-.oldPrice span{
+.oldPrice span {
     font-size: 11px;
     text-decoration: line-through;
     opacity: .7;

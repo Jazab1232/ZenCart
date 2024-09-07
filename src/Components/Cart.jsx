@@ -1,18 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import '../style/cart.css'
 import { AppContext } from './context/Context';
 import { Link } from 'react-router-dom';
+import SideNav from './SideNav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Cart() {
 
     const { cartItem, setCartItem, currentUser } = useContext(AppContext);
-    let SerialNum = 0
 
+    let SerialNum = 0
     let totalPrice = 0
-    cartItem.map((item) => {
-        let itemTotal = item.quantity * item.price
-        return totalPrice += itemTotal
-    })
 
     function increaseQuantity(id) {
         console.log("Increasing quantity for item id:", id);
@@ -48,16 +47,35 @@ export default function Cart() {
     }
 
     function removeItem(id) {
-        console.log("Removing item with id:", id);
+        // console.log("Removing item with id:", id);
+        toast("Item deleted from cart", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            className: "delCartToast",
+            progressClassName: "customProgressBar",
+        });
         setCartItem((prevItems) => {
             const updatedItems = prevItems.filter((item) => item.id !== id);
             return updatedItems;
         });
+
     }
     const currentUserCart = cartItem.filter((item) => {
         return item.userId == currentUser.uid
     })
-    console.log(currentUserCart);
+    currentUserCart.map((item) => {
+        let itemTotal = item.quantity * item.price
+        return totalPrice += itemTotal
+    })
+    console.log(currentUser);
+
+
+
     return (
         <div className='cart'>
             <div className="cardHead">
@@ -83,7 +101,7 @@ export default function Cart() {
                             onClick={() => increaseQuantity(item.id)}
                         >+</span>
                     </p>
-                    <p className='totalPrice'>${(item.price) * (item.quantity)}</p>
+                    <p className='totalPrice'>${((item.price) * (item.quantity)).toFixed(2)}</p>
                     <p style={{ cursor: 'pointer' }}
                         onClick={() => removeItem(item.id)} >Remove</p>
                 </div>
@@ -97,6 +115,9 @@ export default function Cart() {
                     <Link to='/checkout' className='checkOutbtn'>Check Out</Link>
                 </div>
             </div>
+
+            <SideNav />
+            <ToastContainer />
         </div>
     )
 }

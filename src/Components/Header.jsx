@@ -1,18 +1,16 @@
 import React, { useContext } from 'react'
 import '../style/header.css'
 import logo from '../assets/logo.png'
-import logo2 from '../assets/logo2.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { auth } from './config.js/config';
+import { auth } from './config/config';
 import { AppContext } from './context/Context'
 
 
-export default function Header() {
+export default function Header({ showNav, setShowNav, searchData, setSearchData }) {
 
     const { cartItem, setCartItem, loggedIn, setLoggedIn } = useContext(AppContext);
 
     const navigate = useNavigate()
-    console.log(loggedIn)
     function handleLogOut() {
         auth.signOut()
             .then(() => {
@@ -33,11 +31,16 @@ export default function Header() {
         <div className='header'>
 
             <Link to='/' className="logo">
-                <img src={logo2} alt="" />
+                <img src={logo} alt="" />
             </Link >
             <div className='searchLinks'>
                 <div className="searchBox">
-                    <input type="text" placeholder='Search for Product,Brands and More' />
+                    <input
+                        type="text"
+                        placeholder='Search for Product,Brands and More'
+                        onChange={(e) => { setSearchData(e.target.value) }}
+                        value={searchData}
+                    />
                     <div><i className="fa-solid fa-magnifying-glass"></i></div>
                 </div>
                 <div className="navLinks">
@@ -54,27 +57,27 @@ export default function Header() {
             </div>
             <div className="navButtons">
                 {loggedIn ? (
-                    <Link to='/signUp' onClick={handleLogOut} className="headerLink">
+                    <Link to='/signUp' onClick={handleLogOut} className="headerLink authLinks">
                         <i className="fa-solid fa-arrow-right-to-bracket"></i> LogOut
                     </Link>
                 ) : (
-                    <Link to='/login' className="headerLink">
+                    <Link to='/login' className="headerLink authLinks">
                         <i className="fa-solid fa-arrow-right-to-bracket"></i> Login
                     </Link>
                 )}
 
                 {!loggedIn && (
-                    <Link to='/signUp' className="headerLink">
-                        <i className="fa-solid fa-arrow-right-to-bracket"></i> Register
+                    <Link Link to='/signUp' className="headerLink authLinks">
+                        <i class="fa-solid fa-user"></i> Register
                     </Link>
                 )}
 
                 <Link to={loggedIn ? '/cart' : '/login'} onClick={handleCart} className="headerLink">
-                    <i className="fa-solid fa-cart-shopping"></i> Cart
+                    <i className="fa-solid fa-cart-shopping"></i>
                 </Link>
 
-                <i className="fa-solid fa-bars"></i>
+                <i className="fa-solid fa-bars " onClick={() => { setShowNav(!showNav) }}></i>
             </div>
-        </div>
+        </div >
     )
 }

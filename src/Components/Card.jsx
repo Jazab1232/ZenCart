@@ -33,6 +33,7 @@ export default function Card({ img, title, price, id, category, discount, oldPri
                 </div>
             </div>
             <span className='cardTag'>{categoryTag}</span>
+            
         </Link>
     )
 }

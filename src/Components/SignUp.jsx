@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react'
 import '../style/signUp.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from './config.js/config';
+import { auth } from './config/config';
 import { AppContext } from './context/Context';
+import SideNav from './SideNav';
 
 export default function SignUp() {
     const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ export default function SignUp() {
     const { cartItem, setCartItem, loggedIn, setLoggedIn } = useContext(AppContext);
     console.log(email, password);
     const navigate = useNavigate()
+
     function handlesignUp() {
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -18,8 +20,20 @@ export default function SignUp() {
                 setLoggedIn(true)
                 // ...
                 console.log('User successfully signup', user);
-                alert('Account created succesfully')
-                navigate('/')
+                toast("Account created successfully", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    className: "authToast",
+                    progressClassName: "customProgressBar",
+                    onClose: () => {
+                        navigate('/');
+                    },
+                });
 
             })
             .catch((error) => {
@@ -28,11 +42,41 @@ export default function SignUp() {
 
             });
     }
+
     const provider = new GoogleAuthProvider();
     function signUpwithGoogle() {
         signInWithPopup(auth, provider)
-        setLoggedIn(true)
-        navigate('/')
+            .then((result) => {
+                setLoggedIn(true);
+                toast("SignUp successfully", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    className: "authToast",
+                    progressClassName: "customProgressBar",
+                    onClose: () => {
+                        navigate('/');
+                    },
+                });
+            })
+            .catch((error) => {
+                console.error('Error during sign-up:', error);
+                toast("Failed to sign up. Please try again.", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    className: "errorToast",
+                    progressClassName: "customProgressBar",
+                });
+            });
     }
     return (
         <div className='signUp'>
@@ -61,6 +105,8 @@ export default function SignUp() {
                 <Link to='/login' className='signUpLink'>Already have account? Login</Link>
 
             </div>
+
+            <SideNav />
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import '../style/categoryPage.css'
 import Card from './Card';
 import { useOutletContext, useSearchParams } from 'react-router-dom'
+import SideNav from './SideNav';
 
 export default function CategoryPage() {
     const { data } = useOutletContext();
@@ -63,6 +64,8 @@ export default function CategoryPage() {
                     />
                 ))}
             </div>
+            
+      <SideNav />
         </div>
     )
 }

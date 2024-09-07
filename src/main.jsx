@@ -5,7 +5,6 @@ import App from './App.jsx';
 import './index.css';
 import Home from './Components/Home.jsx';
 import Details from './Components/Details.jsx';
-import Test from './Components/Test.jsx';
 import CategoryPage from './Components/CategoryPage.jsx';
 import Login from './Components/Login.jsx';
 import SignUp from './Components/signUp.jsx';
@@ -27,10 +26,7 @@ const router = createBrowserRouter([
         path: "details",
         element: <Details />,
       },
-      {
-        path: "test",
-        element: <Test />,
-      },
+     
       {
         path: "category",
         element: <CategoryPage />,

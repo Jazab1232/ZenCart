@@ -1,7 +1,8 @@
 import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
 import React, { createContext, useEffect, useState } from 'react';
-import { auth, firestore } from '../config.js/config';
+import { auth, firestore } from '../config/config';
 import { useOutletContext } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
 
 // Create the context
 export const AppContext = createContext();
@@ -13,16 +14,19 @@ export function AppProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                setCurrentUser(user);
-            } else {
-                setCurrentUser(null);
-            }
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setLoggedIn(true);
+            setCurrentUser(user);
+          } else {
+            setLoggedIn(false);
+            setCurrentUser(null);
+          }
         });
-
-        return () => unsubscribe();
-    }, []);
+    
+        return () => unsubscribe(); // Cleanup subscription
+      }, []);
+    
 
     useEffect(() => {
         if (currentUser) {
@@ -42,6 +46,7 @@ export function AppProvider({ children }) {
             fetchData();
         }
     }, [currentUser]);
+    
 
     useEffect(() => {
         const saveData = async () => {

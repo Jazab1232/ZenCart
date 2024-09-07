@@ -3,10 +3,16 @@ import './App.css'
 import Header from './Components/Header'
 import { useEffect, useState } from 'react';
 import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
-import { firestore } from './Components/config.js/config';
+import { firestore } from './Components/config/config';
+import Footer from './Components/Footer';
 
 function App() {
   const [data, setData] = useState([])
+
+  const [showNav, setShowNav] = useState(false)
+
+  const [searchData, setSearchData] = useState('')
+  console.log(searchData);
 
   //check Out Page Data
 
@@ -39,7 +45,7 @@ function App() {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch('https://dummyjson.com/products?limit=149')
+    fetch('https://dummyjson.com/products?limit=194')
       .then(response => response.json())  // Convert the response to JSON
       .then(data => {
         setData(data.products);  // Assuming the products are inside a "products" key
@@ -72,18 +78,20 @@ function App() {
   // }
 
 
-
-
-
-
   return (
     <>
 
-      <Header />
+      <Header
+        showNav={showNav}
+        setShowNav={setShowNav}
+        searchData={searchData}
+        setSearchData={setSearchData}
+      />
       <Outlet context={{
         data, account, setAccount, address, setAddress, mobileNum, setMobileNum, checkoutName,
-        setCheckoutName, orderData, setOrderData
+        setCheckoutName, orderData, setOrderData, showNav, setShowNav, searchData
       }} />
+      <Footer />
     </>
   )
 }

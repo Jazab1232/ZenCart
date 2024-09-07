@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
 .detailBox {
@@ -15,7 +16,7 @@
 .detailImg {
     width: 50%;
     height: 350px;
-    margin: 10px 0 0 10px;
+    /* margin: 10px 0 0 10px; */
 }
 
 .detailImg img {
@@ -118,8 +119,9 @@
     background-color: #e8542b25;
 }
 
-.btnAddToCart i {
+.btnAddToCart .fa-cart-shopping {
     margin-right: 10px;
+    color: #E8542B;
 }
 
 .btnBuyNow {
@@ -160,7 +162,7 @@
 
 .imgOption {
     display: flex;
-    height: 100px;
+    height: fit-content;
     gap: 10px;
     padding-left: 40px;
     margin-top: 20px;
@@ -230,4 +232,102 @@
 
 .reviewComment {
     font-size: 14px;
+}
+
+
+
+@media (max-width:820px) {
+    .details{
+        padding-inline: 20px;
+    }
+    .detailBox {
+        width: 100%;
+        margin-inline:10px ;
+    }
+    .descBox{
+        width: 100%;
+    }
+    .reviewsAndRating {
+        width: 100%;
+    }
+}
+
+@media (max-width:680px) {
+    .detailImg{
+        
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .detailBox {
+        flex-direction: column;
+        height: fit-content;
+        align-items: center;
+        padding:  0 0 50px 0;
+    }
+    .cardContent {
+        margin-top: 120px;
+        width: 100%;
+        align-items: center;
+    }
+    .imgOption {
+        padding-left: 0px;
+    }
+    .priceBox{
+        width: 50%;
+    }
+    .btnAddToCart{
+        margin-bottom: 50px;
+    }
+    
+    /* .imgOption span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        border: 1px solid rgba(0, 0, 0, 0.565);
+        cursor: pointer;
+    
+    }
+    
+    .imgOption img {
+        height: 100%;
+    } */
+}
+
+@media (max-width:480px) {
+    .details{
+        padding-inline: 5px;
+    }
+    .detailBox{
+        align-items: center;
+    }
+    .detailImg {
+        width: 100%;
+        /* margin: 10px 0 0 10px; */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .detailImg img{
+        width: 100%;
+    }
+    .imgOption span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border: 1px solid rgba(0, 0, 0, 0.565);
+        cursor: pointer;
+    
+    }
 }

@@ -2,10 +2,11 @@ import React from 'react'
 import '../style/home.css'
 import Card from './Card'
 import { useOutletContext } from 'react-router-dom';
+import SideNav from './SideNav';
 
 export default function Home() {
   // const [data, setData] = useState([])
-  const {data} = useOutletContext();
+  const { data, searchData } = useOutletContext();
 
   // useEffect(() => {
   //   fetch('https://dummyjson.com/products?limit=194')
@@ -53,22 +54,29 @@ export default function Home() {
 
 
 
+  let searchDataFilter = data.filter((item) => {
+    return item.category == searchData ||
+      item.title.toLowerCase().includes(searchData?.toLowerCase()) ||
+      (item.brand?.toLowerCase()) == (searchData?.toLowerCase())
+  })
+  // console.log(searchFilter);
 
-  let LaptopData = data.filter((item) => {
+  let LaptopData = searchDataFilter.filter((item) => {
     return item.category == 'laptops'
   })
-  let mobileArray = data.filter((item) => {
+  let mobileArray = searchDataFilter.filter((item) => {
     return item.category == "smartphones"
   })
   let mobileData = mobileArray.slice(0, 5);
 
-  let furnitureData = data.filter((item) => {
+  let furnitureData = searchDataFilter.filter((item) => {
     return item.category == 'furniture'
   })
-  let dressesData = data.filter((item) => {
+  let dressesData = searchDataFilter.filter((item) => {
     return item.category == 'tops'
   })
-  let cosmeticsData = data.filter((item) => {
+
+  let cosmeticsData = searchDataFilter.filter((item) => {
     return item.category == "beauty"
   })
 
@@ -180,6 +188,8 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      <SideNav />
     </div>
 
   )

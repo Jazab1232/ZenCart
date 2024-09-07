@@ -1,32 +1,40 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../style/orderDetails.css';
 import { AppContext } from './context/Context';
-import { collection, getDocs } from 'firebase/firestore';
-import { firestore } from './config.js/config';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { firestore } from './config/config';
+import SideNav from './SideNav';
 
 export default function OrderDetails() {
   const { cartItem, currentUser } = useContext(AppContext);
   const [orderData, setOrderData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    async function fetchOrderDetails() {
       try {
-        const querySnapshot = await getDocs(collection(firestore, "orderDetails"));
-        const data = [];
-        querySnapshot.forEach((doc) => {
-          const docData = doc.data();
-          if (docData.orders) {
-            data.push(...docData.orders);
-          }
-          console.log('Fetched data:', docData);
-        });
-        setOrderData(data);
-      } catch (e) {
-        console.error('Error fetching documents: ', e);
+        const orderDocRef = doc(firestore, "orderDetails", 'orderDetails');
+        const docSnapshot = await getDoc(orderDocRef);
+
+        if (docSnapshot.exists()) {
+          const data = docSnapshot.data().orders || [];
+          console.log('Retrieved order data: ', data);
+          setOrderData(data);
+        } else {
+          console.log("No such document!");
+          setOrderData([]);
+        }
+      } catch (error) {
+        console.error("Error fetching order details: ", error);
       }
+    }
+
+    fetchOrderDetails();
+
+    return () => {
     };
-    fetchData();
-  }, []);
+
+  }, [])
+
 
   // Filter orderData based on currentUser.uid
   const currentUserOrders = orderData.filter((item) => item.userId === currentUser.uid);
@@ -51,7 +59,7 @@ export default function OrderDetails() {
               <span>Mobile :</span> {item.mobileNum}
             </p>
             <p className='orderItems'>
-              <span>No of Items:</span> {cartItem.length}
+              <span>No of Items:</span> {item.cartItem ? item.cartItem.length : item.Quantity || 'N/A'}
             </p>
             <p>Your Order will be delivered within 7 Days</p>
 
@@ -60,6 +68,8 @@ export default function OrderDetails() {
       ) : (
         <div className="noOrders">No orders found</div>
       )}
+
+      <SideNav />
     </div>
   );
 }
