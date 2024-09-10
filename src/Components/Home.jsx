@@ -19,7 +19,6 @@ export default function Home() {
   let LaptopData = searchDataFilter.filter((item) => {
     return item.category == 'laptops'
   })
-  console.log(LaptopData);
 
   let mobileArray = searchDataFilter.filter((item) => {
     return item.category == "smartphones"
