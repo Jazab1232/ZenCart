@@ -5,6 +5,8 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } f
 import { auth } from './config/config';
 import { AppContext } from './context/Context';
 import SideNav from './SideNav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
     const [email, setEmail] = useState('')
@@ -107,6 +109,7 @@ export default function SignUp() {
             </div>
 
             <SideNav />
+            <ToastContainer />
         </div>
     )
 }

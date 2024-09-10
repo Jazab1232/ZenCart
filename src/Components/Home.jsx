@@ -5,52 +5,7 @@ import { useOutletContext } from 'react-router-dom';
 import SideNav from './SideNav';
 
 export default function Home() {
-  // const [data, setData] = useState([])
   const { data, searchData } = useOutletContext();
-
-  // useEffect(() => {
-  //   fetch('https://dummyjson.com/products?limit=194')
-  //     .then((res) => {
-  //       return res.json()
-  //     })
-  //     .then((data) => {
-  //       setData(data.products)
-  //     })
-  // }, [])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const querySnapshot = await getDocs(collection(firestore, "data"));
-  //       querySnapshot.forEach((doc) => {
-  //         console.log(`${doc.id} => ${doc.data()}`);
-  //         setData(doc.data().data)
-  //       });
-  //     } catch (e) {
-  //       console.error("Error fetching documents: ", e);
-  //     }
-  //   };
-  //   fetchData();
-  //   return () => {
-  //   };
-  // }, []);
-
-
-  // useEffect(() => {
-  //   const addDataToFirestore = async () => {
-  //     try {
-  //       await setDoc(doc(firestore, "data", "productData"), { data });
-  //       console.log("Data successfully written!");
-  //     } catch (e) {
-  //       console.error("Error adding document: ", e);
-  //     }
-  //   };
-
-  //   addDataToFirestore();
-
-  //   return () => {
-  //   };
-  // }, [5000]);
 
 
 
@@ -64,6 +19,8 @@ export default function Home() {
   let LaptopData = searchDataFilter.filter((item) => {
     return item.category == 'laptops'
   })
+  console.log(LaptopData);
+
   let mobileArray = searchDataFilter.filter((item) => {
     return item.category == "smartphones"
   })
@@ -81,13 +38,15 @@ export default function Home() {
   })
 
 
+
   return (
     <div className='home'>
       <div className="cardBox">
-        <div className="categoryBar">
-          <span></span>
-          <p >Laptop</p>
-        </div>
+        {LaptopData.length != 0 && (
+          <div className="categoryBar">
+            <span></span>
+            <p >Laptop</p>
+          </div>)}
         <div className="cardList">
           {LaptopData.map((item) => (
             <Card
@@ -105,10 +64,12 @@ export default function Home() {
         </div>
       </div>
       <div className="cardBox">
-        <div className="categoryBar">
-          <span></span>
-          <p >Mobiles</p>
-        </div>
+        {mobileData.length != 0 && (
+          <div className="categoryBar">
+            <span></span>
+            <p >Mobiles</p>
+          </div>)}
+
         <div className="cardList">
           {mobileData.map((item) => (
             <Card
@@ -126,10 +87,12 @@ export default function Home() {
         </div>
       </div>
       <div className="cardBox">
-        <div className="categoryBar">
-          <span></span>
-          <p >Dresses</p>
-        </div>
+        {dressesData.length != 0 && (
+          <div className="categoryBar">
+            <span></span>
+            <p >Dresses</p>
+          </div>)}
+
         <div className="cardList">
           {dressesData.map((item) => (
             <Card
@@ -147,10 +110,12 @@ export default function Home() {
         </div>
       </div>
       <div className="cardBox">
-        <div className="categoryBar">
-          <span></span>
-          <p >Beauty</p>
-        </div>
+        {cosmeticsData.length != 0 && (
+          <div className="categoryBar">
+            <span></span>
+            <p >Beauty</p>
+          </div>)}
+
         <div className="cardList">
           {cosmeticsData.map((item) => (
             <Card
@@ -168,10 +133,12 @@ export default function Home() {
         </div>
       </div>
       <div className="cardBox">
-        <div className="categoryBar">
-          <span></span>
-          <p >Furniture</p>
-        </div>
+        {furnitureData.length != 0 && (
+          <div className="categoryBar">
+            <span></span>
+            <p >Furniture</p>
+          </div>)}
+
         <div className="cardList">
           {furnitureData.map((item) => (
             <Card

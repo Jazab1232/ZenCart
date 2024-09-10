@@ -115,7 +115,9 @@ export default function Cart() {
                     <Link to='/checkout' className='checkOutbtn'>Check Out</Link>
                 </div>
             </div>
-
+            <div style={{marginTop:'40px'}}>
+                <Link to='/orderDetails' className='OrderDetailBtn '>Order Details</Link>
+            </div>
             <SideNav />
             <ToastContainer />
         </div>

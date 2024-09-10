@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import './App.css'
 import Header from './Components/Header'
 import { useEffect, useState } from 'react';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { firestore } from './Components/config/config';
 import Footer from './Components/Footer';
 
@@ -24,59 +24,65 @@ function App() {
 
 
 
-  // Product Data Getting from Firestore
   // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const querySnapshot = await getDocs(collection(firestore, "data"));
-  //       querySnapshot.forEach((doc) => {
-  //         setData(doc.data().data)
-  //         console.log(data);
+  //   // Fetch data from the API
+  //   fetch('https://dummyjson.com/products?limit=194')
+  //     .then(response => response.json())  // Convert the response to JSON
+  //     .then(data => {
+  //       setData(data.products);  // Assuming the products are inside a "products" key
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);  // Handle any errors
+  //     });
+  // }, []);  
+  
+  // useEffect(() => {
+  //   // Fetch data from the API
+  //   fetch('https://dummyjson.com/products?limit=194')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setData(data.products);
+        
+  //       // Set data to Firestore
+  //       const setDataToFirestore = async () => {
+  //         try {
+  //           const docRef = doc(firestore, 'products', 'productData'); // Define your document path
+  //           await setDoc(docRef, { products: data.products });
+  //           console.log('Data successfully written to Firestore!');
+  //         } catch (error) {
+  //           console.error('Error writing document to Firestore:', error);
+  //         }
+  //       };
 
-  //       });
-  //     } catch (e) {
-  //       console.error("Error fetching documents: ", e);
-  //     }
-  //   };
-  //   fetchData();
-  //   return () => {
-  //   };
+  //       setDataToFirestore();
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching data:', error);
+  //     });
   // }, []);
 
+  const fetchDataFromFirestore = async () => {
+    try {
+      const docRef = doc(firestore, 'products', 'productData'); // Define your document path
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log('Document data:', docSnap.data());
+        setData(docSnap.data().products);
+      } else {
+        console.log('No such document!');
+      }
+    } catch (error) {
+      console.error('Error fetching document from Firestore:', error);
+    }
+  };
+
   useEffect(() => {
-    // Fetch data from the API
-    fetch('https://dummyjson.com/products?limit=194')
-      .then(response => response.json())  // Convert the response to JSON
-      .then(data => {
-        setData(data.products);  // Assuming the products are inside a "products" key
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);  // Handle any errors
-      });
-  }, []);  //
+    fetchDataFromFirestore();
+  }, []);
 
-  // if (data) {
-  //   useEffect(() => {
-  //     // Define an async function inside the useEffect
-  //     const addDataToFirestore = async () => {
-  //       try {
-  //         await setDoc(doc(firestore, "data", "productData"), { data });
-  //         console.log("Data successfully written!");
-  //       } catch (e) {
-  //         console.error("Error adding document: ", e);
-  //       }
-  //     };
-
-  //     // Call the async function 
-  //     addDataToFirestore();
-
-  //     // Cleanup function (if needed, but in this case, nothing to cleanup)
-  //     return () => {
-  //       // Any cleanup code if necessary
-  //     };
-  //   }, [10000]);
-  // }
-
+  
+ 
 
   return (
     <>

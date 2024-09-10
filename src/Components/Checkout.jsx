@@ -5,6 +5,10 @@ import { AppContext } from './context/Context';
 import { arrayUnion, collection, doc, getDoc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { firestore } from './config/config';
 import SideNav from './SideNav';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 export default function Checkout() {
 
     const { account, setAccount, address, setAddress, mobileNum, setMobileNum,
@@ -167,13 +171,33 @@ export default function Checkout() {
                 await setDoc(orderDocRef, {
                     orders: arrayUnion(orderDetails)
                 }, { merge: true });
-
-                console.log('Order added successfully');
+                toast("Order placed successfully", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    className: "adToCartToast",   // Custom toast class
+                    progressClassName: "customProgressBar",
+                });
+                setShowDetailBtn(true)
             } catch (error) {
                 console.error("Error adding order: ", error);
             }
         } else {
-            console.log("Please fill in all the required fields.");
+            toast("Please fill in all the required fields.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                className: "errorToast",
+                progressClassName: "customProgressBar",
+            });
         }
     }
 
@@ -202,13 +226,34 @@ export default function Checkout() {
                 await setDoc(orderDocRef, {
                     orders: arrayUnion(orderDetails)
                 }, { merge: true });
-
-                console.log('Order added successfully');
+                toast("Order placed successfully", {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    className: "adToCartToast",   // Custom toast class
+                    progressClassName: "customProgressBar",
+                });
+                setShowDetailBtn(true)
             } catch (error) {
+
                 console.error("Error adding order: ", error);
             }
         } else {
-            console.log("Please fill in all the required fields.");
+            toast("Please fill in all the required fields.", {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                className: "errorToast",
+                progressClassName: "customProgressBar",
+            });
         }
     }
 
@@ -254,6 +299,7 @@ export default function Checkout() {
             <Link to='/orderDetails' className="orderBtn" style={{ display: showDetailBtn ? 'inline-block' : 'none' }}>View Order Details</Link>
 
             <SideNav />
+            <ToastContainer />
         </div>
     )
 }
